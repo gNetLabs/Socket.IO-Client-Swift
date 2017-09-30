@@ -403,6 +403,9 @@ open class SocketIOClient : NSObject, SocketIOClientSpec, SocketEngineClient, So
     /// - parameter reason: The reason the engine opened.
     open func engineDidOpen(reason: String) {
         DefaultSocketLogger.Logger.log(reason, type: SocketIOClient.logType)
+        if reason == "Connect" {
+            joinNamespace(nsp)
+        }
     }
 
     // Called when the socket gets an ack for something it sent
